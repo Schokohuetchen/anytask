@@ -1,5 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
+import Header from './Header';
 
-const App = () => <h1>anytask</h1>;
+const App: FC = (): JSX.Element => {
+  return (
+    <div className="app">
+      <Header isLoggedIn={false} />
+    </div>
+  );
+};
 
 export default App;
