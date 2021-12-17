@@ -1,0 +1,50 @@
+.logo {
+  display: flex;
+  color: #3498DB;
+  align-items: center;
+
+  &__name {
+    font-size: 18px;
+
+    &--bold {
+      color: #2980B9;
+      font-weight: 600;
+    }
+  }
+
+  &__tick-mark {
+    width: 32px;
+    height: 25px;
+    position: relative;
+    margin-right: 0.25rem;
+    display: inline-block;
+
+    &::before,
+    &::after {
+      content: "";
+      border: 1px solid;
+      position: absolute;
+      border-radius: 99px;
+      transform-origin: left bottom;
+      transform: translateX(10px) rotate(-45deg);
+    }
+
+    &::before {
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 50%;
+      border-color: #3498DB;
+      background-color: #3498DB;
+    }
+
+    &::after {
+      left: 4px;
+      bottom: 1px;
+      height: 1px;
+      width: 100%;
+      border-color: #2980B9;
+      background-color: #2980B9;
+    }
+  }
+}
