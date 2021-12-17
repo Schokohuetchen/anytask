@@ -1,6 +1,5 @@
 .logo {
   display: flex;
-  color: #3498DB;
   align-items: center;
 
   &__name {
@@ -45,6 +44,24 @@
       width: 100%;
       border-color: #2980B9;
       background-color: #2980B9;
+    }
+  }
+
+  &--is-logged-in {
+    .logo {
+      &__name {
+        &--bold {
+          color: #FFFFFF;
+        }
+      }
+
+      &__tick-mark {
+        &::before,
+        &::after {
+          border-color: #FFFFFF;
+          background-color: #FFFFFF;
+        }
+      }
     }
   }
 }
