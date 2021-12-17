@@ -14,7 +14,6 @@ module.exports = merge(common, {
       },
     ],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
     open: true,
     compress: true,
