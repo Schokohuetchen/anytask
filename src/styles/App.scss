@@ -1,4 +1,10 @@
 .app {
   min-height: 100vh;
   background-color: #F7F7F7;
+
+  &__content {
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 900px;
+  }
 }

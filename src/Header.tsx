@@ -1,12 +1,17 @@
 import React, { FC } from 'react';
+import Button from './Button';
 
 interface HeaderProps {
   isLoggedIn: boolean;
 }
 
-export const Logo: FC = (): JSX.Element => {
+interface LogoProps {
+  isLoggedIn: boolean;
+}
+
+const Logo: FC<LogoProps> = ({ isLoggedIn }): JSX.Element => {
   return (
-    <div className="logo">
+    <div className={`logo ${isLoggedIn ? 'logo--is-logged-in' : ''}`}>
       <div className="logo__tick-mark" />
       <div className="logo__name">
         any<span className="logo__name--bold">task</span>
@@ -15,10 +20,19 @@ export const Logo: FC = (): JSX.Element => {
   );
 };
 
-const Header: FC<HeaderProps> = (): JSX.Element => {
+const Header: FC<HeaderProps> = ({ isLoggedIn }): JSX.Element => {
+  const handleLogout = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(e);
+  };
+
   return (
-    <div className="header">
-      <Logo />
+    <div className={`header ${isLoggedIn ? 'header--is-logged-in' : ''}`}>
+      <div className="header__content">
+        <Logo isLoggedIn={isLoggedIn} />
+        {isLoggedIn && (
+          <Button layout="secondary" isUppercase buttonText="Logout" onClick={handleLogout} />
+        )}
+      </div>
     </div>
   );
 };
