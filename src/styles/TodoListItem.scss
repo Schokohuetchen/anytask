@@ -37,7 +37,31 @@
     background-color: #3498DB40;
 
     &:checked {
+      position: relative;
       background-color: #2980B9;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        background-color: #FFFFFF;
+        transform-origin: left bottom;
+        transform: translateX(10px) rotate(-45deg);
+      }
+
+      &::before {
+        top: 45%;
+        left: -2px;
+        width: 2px;
+        height: 30%;
+      }
+
+      &::after {
+        left: -1px;
+        width: 60%;
+        bottom: 5px;
+        height: 2px;
+      }
     }
   }
 
