@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import TodoListItem from './TodoListItem';
+import RoundButton from './RoundButton';
 
 const TodoList: FC = (): JSX.Element => {
   const tasks = [
@@ -51,10 +52,21 @@ const TodoList: FC = (): JSX.Element => {
     },
   ];
 
+  const handleClick = () => {
+    console.log('add me');
+  };
+
   return (
     <div className="todoList">
-      <span className="todoList__headline">Ihre heutigen Tasks:</span>
-      {tasks && tasks.map((task) => <TodoListItem key={task.id} task={task} />)}
+      <div className="todoList__content">
+        <div className="todoList__headline">Ihre heutigen Tasks:</div>
+        {tasks && tasks.map((task) => <TodoListItem key={task.id} task={task} />)}
+      </div>
+      <div className="todoList__actions">
+        <RoundButton onClick={handleClick} icon="reload" />
+        <RoundButton onClick={handleClick} isLarge />
+        <RoundButton onClick={handleClick} icon="delete" />
+      </div>
     </div>
   );
 };

@@ -1,0 +1,18 @@
+.roundButton {
+  width: 45px;
+  height: 45px;
+  color: #3498DB;
+  cursor: pointer;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  border: 1px solid #0000000A;
+
+  &--is-large {
+    width: 65px;
+    height: 65px;
+    color: #FFFFFF;
+    font-size: 24px;
+    background-color: #3498DB;
+  }
+}

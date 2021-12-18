@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 type Layout = 'primary' | 'secondary';
 
-interface ButtonProps {
+export interface ButtonProps {
   layout?: Layout;
   isLarge?: boolean;
   buttonText: string;

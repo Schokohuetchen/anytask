@@ -8,4 +8,19 @@
     font-weight: 500;
     margin-bottom: 1.5rem;
   }
+
+  &__content {
+    width: 100%;
+    max-width: 275px;
+  }
+
+  &__actions {
+    display: flex;
+    margin-top: 1.5rem;
+    align-items: center;
+
+    .roundButton--is-large {
+      margin: 0 2rem;
+    }
+  }
 }
