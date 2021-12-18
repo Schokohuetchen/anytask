@@ -30,7 +30,7 @@ const TodoList: FC = (): JSX.Element => {
       assignee: 2671362,
       assigner: 2671355,
       commentCount: 10,
-      completed: false,
+      completed: true,
       content: 'Buy Milk',
       description: '',
       due: {
