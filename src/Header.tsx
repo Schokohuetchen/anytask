@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
 import Button from './Button';
-
-interface HeaderProps {
-  isLoggedIn: boolean;
-}
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 interface LogoProps {
   isLoggedIn: boolean;
@@ -20,9 +18,11 @@ const Logo: FC<LogoProps> = ({ isLoggedIn }): JSX.Element => {
   );
 };
 
-const Header: FC<HeaderProps> = ({ isLoggedIn }): JSX.Element => {
-  const handleLogout = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log(e);
+const Header: FC = (): JSX.Element => {
+  const { isLoggedIn } = useSelector((state: RootState) => state.users);
+
+  const handleLogout = () => {
+    // do something
   };
 
   return (

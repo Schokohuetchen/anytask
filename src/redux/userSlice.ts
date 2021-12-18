@@ -2,6 +2,7 @@ import { User } from '../models/User';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { handleError, handleSuccess, isAuthenticated, login } from '../data/api';
 import { getAccessToken } from '../data/localeStorage';
+import { RootState } from './store';
 
 const initialState: User = { authToken: getAccessToken() || '', isLoggedIn: isAuthenticated() };
 
@@ -38,3 +39,5 @@ export const authenticateUser = (authToken: string) => (dispatch: any) => {
       dispatch(error());
     });
 };
+
+export const isLoggedIn = (state: RootState) => state.users;
