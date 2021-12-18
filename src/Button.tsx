@@ -5,6 +5,7 @@ type Layout = 'primary' | 'secondary';
 export interface ButtonProps {
   layout?: Layout;
   isLarge?: boolean;
+  disabled?: boolean;
   buttonText: string;
   isUppercase?: boolean;
   onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -13,20 +14,16 @@ export interface ButtonProps {
 const Button: FC<ButtonProps> = ({
   layout = 'primary',
   isLarge,
+  disabled = false,
   buttonText,
   isUppercase,
   onClick = () => {},
 }): JSX.Element => {
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log('click');
-
-    onClick(e);
-  };
-
   return (
     <div className={`button-wrapper ${isLarge ? 'button-wrapper--is-large' : ''}`}>
       <button
-        onClick={handleClick}
+        disabled={disabled}
+        onClick={onClick}
         className={`button button--${layout === 'primary' ? 'primary' : 'secondary'} 
         ${isLarge ? 'button--is-large' : ''}`}
       >

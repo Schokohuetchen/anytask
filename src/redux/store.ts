@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import todoItemsReducer from './todoSlice';
+import userReducer from './userSlice';
 
 export const store = configureStore({
-  reducer: todoItemsReducer,
+  reducer: {
+    users: userReducer,
+    todoItems: todoItemsReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

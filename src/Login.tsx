@@ -1,13 +1,28 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import Button from './Button';
 import TextField from './TextField';
+import { useDispatch } from 'react-redux';
+import { authenticateUser } from './redux/userSlice';
 
 const Login: FC = (): JSX.Element => {
+  const [textInput, setTextInput] = useState<string>('');
+
+  const dispatch = useDispatch();
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTextInput(e.target.value);
+  };
+
+  const handleLogin = (e: any) => {
+    e.preventDefault();
+    dispatch(authenticateUser(textInput));
+  };
+
   return (
-    <div className="login">
-      <TextField />
-      <Button isUppercase isLarge buttonText="Login" onClick={(e) => console.log('let me in!')} />
-    </div>
+    <form className="login">
+      <TextField value={textInput} onChange={handleInputChange} />
+      <Button disabled={!textInput} isUppercase isLarge buttonText="Login" onClick={handleLogin} />
+    </form>
   );
 };
 
