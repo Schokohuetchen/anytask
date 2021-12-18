@@ -5,13 +5,12 @@
 
   &__task {
     display: flex;
-    border-radius: 8px;
     position: relative;
+    border-radius: 1rem;
     align-items: center;
-    box-sizing: border-box;
     border: 1px solid #FFFFFF;
     background-color: #FFFFFF;
-    padding: 2rem 0.5rem 2rem 1rem;
+    padding: 1.25rem 1rem;
   }
 
   &__description {
@@ -21,7 +20,7 @@
   }
 
   &__time {
-    right: 0.5rem;
+    right: 1rem;
     font-size: 14px;
     bottom: 0.625rem;
     position: absolute;
