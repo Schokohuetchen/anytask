@@ -27,7 +27,7 @@ const Button: FC<ButtonProps> = ({
     <div className={`button-wrapper ${isLarge ? 'button-wrapper--is-large' : ''}`}>
       <button
         onClick={handleClick}
-        className={`button ${layout === 'primary' ? 'button--primary' : 'button--secondary'} 
+        className={`button button--${layout === 'primary' ? 'primary' : 'secondary'} 
         ${isLarge ? 'button--is-large' : ''}`}
       >
         <span className={`button__text ${isUppercase ? 'button__text--is-uppercase' : ''}`}>
