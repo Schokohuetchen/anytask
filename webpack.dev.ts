@@ -1,5 +1,3 @@
-const path = require('path');
-const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.ts');
 
@@ -10,7 +8,7 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.(scss|css)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
     ],
   },
@@ -21,5 +19,3 @@ module.exports = merge(common, {
     port: 4000,
   },
 });
-
-export {};

@@ -20,5 +20,6 @@
       "version": "detect"
     },
     "import/extensions": [".js", ".ts", ".jsx", ".tsx"]
-  }
+  },
+
 }
