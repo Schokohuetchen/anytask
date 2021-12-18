@@ -1,0 +1,48 @@
+.todoListItem {
+  width: 100%;
+  max-width: 275px;
+  margin-bottom: 1rem;
+
+  &__task {
+    display: flex;
+    border-radius: 8px;
+    position: relative;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    padding: 2rem 0.5rem 2rem 1rem;
+  }
+
+  &__description {
+    flex-grow: 1;
+    font-size: 16px;
+    padding-left: 0.5rem;
+  }
+
+  &__time {
+    right: 0.5rem;
+    font-size: 14px;
+    bottom: 0.625rem;
+    position: absolute;
+  }
+
+  &__checkbox {
+    width: 24px;
+    height: 24px;
+    outline: none;
+    appearance: none;
+    border-radius: 50%;
+    border: 1px solid #3498DB;
+    background-color: #3498DB40;
+
+    &:checked {
+      background-color: #2980B9;
+    }
+  }
+
+  &__description,
+  &__checkbox {
+    cursor: pointer;
+  }
+}
