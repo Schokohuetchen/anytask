@@ -1,7 +1,7 @@
 export interface DueObject {
   date: string;
-  recurring: boolean;
+  recurring?: boolean;
   datetime?: string;
   string?: string;
-  timezone: string;
+  timezone?: string;
 }
