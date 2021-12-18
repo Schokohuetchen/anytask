@@ -54,9 +54,7 @@ const TodoList: FC = (): JSX.Element => {
   return (
     <div className="todoList">
       <span className="todoList__headline">Ihre heutigen Tasks:</span>
-      {tasks.map((task) => (
-        <TodoListItem key={task.id} task={task} />
-      ))}
+      {tasks && tasks.map((task) => <TodoListItem key={task.id} task={task} />)}
     </div>
   );
 };
