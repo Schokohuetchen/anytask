@@ -1,6 +1,6 @@
 import { User } from '../models/User';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { handleError, handleSuccess, isAuthenticated, login } from '../data/api';
+import { handleError, handleSuccess, isAuthenticated, login, removeAuthToken } from '../data/api';
 import { getAccessToken } from '../data/localeStorage';
 import { RootState } from './store';
 
@@ -22,11 +22,17 @@ const userSlice = createSlice({
         isLoggedIn: false,
       };
     },
+    logout: () => {
+      return {
+        authToken: '',
+        isLoggedIn: false,
+      };
+    },
   },
 });
 
 export default userSlice.reducer;
-export const { success, error } = userSlice.actions;
+export const { success, error, logout } = userSlice.actions;
 
 export const authenticateUser = (authToken: string) => (dispatch: any) => {
   login(authToken)
@@ -40,4 +46,11 @@ export const authenticateUser = (authToken: string) => (dispatch: any) => {
     });
 };
 
-export const isLoggedIn = (state: RootState) => state.users;
+export const removeAuthentication = () => (dispatch: any) => {
+  try {
+    removeAuthToken();
+    dispatch(logout());
+  } catch (e) {
+    dispatch(error());
+  }
+};

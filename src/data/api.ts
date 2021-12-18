@@ -23,6 +23,10 @@ export const login = async (authToken: string) => {
   await api(authToken).getProjects();
 };
 
+export const removeAuthToken = () => {
+  removeToken();
+};
+
 export const fetchTasks = async () => {
   const authToken = getAccessToken();
 
