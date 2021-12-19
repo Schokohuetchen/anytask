@@ -1,13 +1,15 @@
-import { User } from '../models/User';
+import { Authentication } from '../models/Authentication';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { handleError, handleSuccess, isAuthenticated, login, removeAuthToken } from '../data/api';
 import { getAccessToken } from '../data/localeStorage';
-import { RootState } from './store';
 
-const initialState: User = { authToken: getAccessToken() || '', isLoggedIn: isAuthenticated() };
+const initialState: Authentication = {
+  authToken: getAccessToken() || '',
+  isLoggedIn: isAuthenticated(),
+};
 
-const userSlice = createSlice({
-  name: 'users',
+const authSlice = createSlice({
+  name: 'auth',
   initialState,
   reducers: {
     success: (state, action: PayloadAction<string>) => {
@@ -31,8 +33,8 @@ const userSlice = createSlice({
   },
 });
 
-export default userSlice.reducer;
-export const { success, error, logout } = userSlice.actions;
+export default authSlice.reducer;
+export const { success, error, logout } = authSlice.actions;
 
 export const authenticateUser = (authToken: string) => (dispatch: any) => {
   login(authToken)
@@ -52,5 +54,6 @@ export const removeAuthentication = () => (dispatch: any) => {
     dispatch(logout());
   } catch (e) {
     dispatch(error());
+    console.log(e);
   }
 };

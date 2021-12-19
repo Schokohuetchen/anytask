@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
 
 const App: FC = (): JSX.Element => {
-  const { isLoggedIn } = useSelector((state: RootState) => state.users);
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
 
   return (
     <div className="app">

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './redux/store';
-import { removeAuthentication } from './redux/userSlice';
+import { removeAuthentication } from './redux/authSlice';
 
 interface LogoProps {
   isLoggedIn: boolean;
@@ -20,7 +20,7 @@ const Logo: FC<LogoProps> = ({ isLoggedIn }): JSX.Element => {
 };
 
 const Header: FC = (): JSX.Element => {
-  const { isLoggedIn } = useSelector((state: RootState) => state.users);
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
