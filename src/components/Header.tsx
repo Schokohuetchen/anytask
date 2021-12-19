@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from './redux/store';
-import { removeAuthentication } from './redux/authSlice';
+import { RootState } from '../redux/store';
+import { removeAuthentication } from '../redux/authSlice';
 
 interface LogoProps {
   isLoggedIn: boolean;

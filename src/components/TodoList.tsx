@@ -2,13 +2,13 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import TodoListItem from './TodoListItem';
 import RoundButton from './RoundButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewTask, deleteTask, deselectAll, fetchTasks } from './redux/taskSlice';
-import { RootState } from './redux/store';
+import { addNewTask, deleteTask, deselectAll, fetchTasks } from '../redux/taskSlice';
+import { RootState } from '../redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
 import TextField from './TextField';
-import { AddTaskPayload } from './models/AddTaskPayload';
+import { AddTaskPayload } from '../models/AddTaskPayload';
 
 interface TodoListHeaderProps {
   addMode?: boolean;

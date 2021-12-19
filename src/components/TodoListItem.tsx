@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Task } from '@doist/todoist-api-typescript';
 import { useDispatch } from 'react-redux';
-import { deselectTask, markAsComplete, selectTask } from './redux/taskSlice';
+import { deselectTask, markAsComplete, selectTask } from '../redux/taskSlice';
 
 interface TodoListItemProps {
   task: Task;

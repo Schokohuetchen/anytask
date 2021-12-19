@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useState } from 'react';
 import Button from './Button';
 import TextField from './TextField';
 import { useDispatch } from 'react-redux';
-import { authenticateUser } from './redux/authSlice';
+import { authenticateUser } from '../redux/authSlice';
 
 const Login: FC = (): JSX.Element => {
   const [textInput, setTextInput] = useState<string>('');
