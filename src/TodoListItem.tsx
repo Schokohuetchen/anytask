@@ -5,10 +5,13 @@ import { markAsComplete } from './redux/taskSlice';
 
 interface TodoListItemProps {
   task: Task;
+  selectMode: boolean;
+  onSelect: (taskId: number) => void;
 }
 
-const TodoListItem: FC<TodoListItemProps> = ({ task }): JSX.Element => {
+const TodoListItem: FC<TodoListItemProps> = ({ task, selectMode, onSelect }): JSX.Element => {
   const [isChecked, setIsChecked] = useState<boolean>(task.completed);
+  const [isSelected, setIsSelected] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -23,21 +26,43 @@ const TodoListItem: FC<TodoListItemProps> = ({ task }): JSX.Element => {
     }
   };
 
-  const handleCheckboxChange = (taskId: number) => {
-    setIsChecked(!isChecked);
-    dispatch(markAsComplete(taskId));
+  const handleCheckboxChange = (taskId: number, e: any) => {
+    if (!selectMode) {
+      setIsChecked(!isChecked);
+      dispatch(markAsComplete(taskId));
+    } else {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  };
+
+  const toggleSelect = (taskId: number, e: any) => {
+    if (selectMode) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      setIsSelected(!isSelected);
+    }
   };
 
   return (
     <div className="todoListItem">
       {task && (
-        <div className="todoListItem__task">
+        <div
+          onClick={(e) => {
+            toggleSelect(task.id, e);
+          }}
+          className={`todoListItem__task ${isSelected ? 'todoListItem__task--selected' : ''}`}
+        >
           <input
             id="checkbox"
             type="checkbox"
             defaultChecked={isChecked}
-            onChange={() => handleCheckboxChange(task.id)}
-            className="todoListItem__checkbox"
+            onChange={(e) => handleCheckboxChange(task.id, e)}
+            className={`todoListItem__checkbox ${
+              isSelected ? 'todoListItem__checkbox--selected' : ''
+            }`}
           />
           <label htmlFor="checkbox" className="todoListItem__description">
             {task.content}

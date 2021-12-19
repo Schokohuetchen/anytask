@@ -11,6 +11,11 @@
     border: 1px solid #FFFFFF;
     background-color: #FFFFFF;
     padding: 1.25rem 1rem;
+
+    &--selected {
+      color: #FFFFFF;
+      background-color: #2980B9;
+    }
   }
 
   &__description {
@@ -34,6 +39,10 @@
     border-radius: 50%;
     border: 1px solid #3498DB;
     background-color: #3498DB40;
+
+    &--selected {
+      background-color: #d0e6f7;
+    }
 
     &:checked {
       position: relative;
