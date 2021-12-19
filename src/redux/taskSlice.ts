@@ -4,9 +4,10 @@ import { Task } from '@doist/todoist-api-typescript';
 
 interface TaskList {
   tasks?: Task[];
+  selectedTasks?: number[];
 }
 
-const initialState: TaskList = {};
+const initialState: TaskList = { selectedTasks: [], tasks: [] };
 
 const taskSlice = createSlice({
   name: 'tasks',
@@ -18,6 +19,24 @@ const taskSlice = createSlice({
         ...action.payload,
       };
     },
+    selectTask: (state, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        selectedTasks: [...state.selectedTasks!!, action.payload],
+      };
+    },
+    deselectTask: (state, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        selectedTasks: state.selectedTasks?.filter((taskId) => taskId !== action.payload),
+      };
+    },
+    deselectAll: (state) => {
+      return {
+        ...state,
+        selectedTasks: [],
+      };
+    },
     error: (state) => {
       return {
         ...state,
@@ -26,7 +45,7 @@ const taskSlice = createSlice({
   },
 });
 
-export const { allTasks, error } = taskSlice.actions;
+export const { allTasks, selectTask, deselectTask, deselectAll, error } = taskSlice.actions;
 export default taskSlice.reducer;
 
 export const fetchTasks = () => async (dispatch: any) => {
@@ -65,6 +84,7 @@ export const deleteTask = (taskId: number) => async (dispatch: any) => {
   try {
     await removeTask(taskId)
       .then(() => {
+        dispatch(deselectTask(taskId));
         dispatch(fetchTasks());
       })
       .catch((e) => {

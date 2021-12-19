@@ -1,21 +1,38 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Task } from '@doist/todoist-api-typescript';
 import { useDispatch } from 'react-redux';
-import { markAsComplete } from './redux/taskSlice';
+import { deselectTask, markAsComplete, selectTask } from './redux/taskSlice';
 
 interface TodoListItemProps {
   task: Task;
   selectMode: boolean;
-  onSelect: (taskId: number) => void;
 }
 
-const TodoListItem: FC<TodoListItemProps> = ({ task, selectMode, onSelect }): JSX.Element => {
+const TodoListItem: FC<TodoListItemProps> = ({ task, selectMode = false }): JSX.Element => {
   const [isChecked, setIsChecked] = useState<boolean>(task.completed);
   const [isSelected, setIsSelected] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
   const hasDateTime = task.due?.datetime !== undefined && task.due?.datetime !== '';
+
+  useEffect(() => {
+    if (!task) {
+      return;
+    }
+
+    if (isSelected) {
+      dispatch(selectTask(task.id));
+    } else {
+      dispatch(deselectTask(task.id));
+    }
+  }, [isSelected]);
+
+  useEffect(() => {
+    if (!selectMode) {
+      setIsSelected(false);
+    }
+  }, [selectMode]);
 
   const getTime = () => {
     if (task.due?.datetime) {
@@ -37,7 +54,7 @@ const TodoListItem: FC<TodoListItemProps> = ({ task, selectMode, onSelect }): JS
     }
   };
 
-  const toggleSelect = (taskId: number, e: any) => {
+  const toggleSelect = (e: any) => {
     if (selectMode) {
       e.preventDefault();
       e.stopPropagation();
@@ -51,7 +68,7 @@ const TodoListItem: FC<TodoListItemProps> = ({ task, selectMode, onSelect }): JS
       {task && (
         <div
           onClick={(e) => {
-            toggleSelect(task.id, e);
+            toggleSelect(e);
           }}
           className={`todoListItem__task ${isSelected ? 'todoListItem__task--selected' : ''}`}
         >
