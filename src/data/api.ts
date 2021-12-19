@@ -47,6 +47,16 @@ export const addTask = (data: AddTaskPayload) => {
   }
 };
 
+export const completeTask = (taskId: number) => {
+  const authToken = getAccessToken();
+
+  if (!authToken) {
+    throw new Error('No authToken, request could not be processed.');
+  } else {
+    return api(authToken).closeTask(taskId);
+  }
+};
+
 export const removeTask = (taskId: number) => {
   const authToken = getAccessToken();
 

@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Task } from '@doist/todoist-api-typescript';
+import { useDispatch } from 'react-redux';
+import { markAsComplete } from './redux/taskSlice';
 
 interface TodoListItemProps {
   task: Task;
@@ -7,6 +9,8 @@ interface TodoListItemProps {
 
 const TodoListItem: FC<TodoListItemProps> = ({ task }): JSX.Element => {
   const [isChecked, setIsChecked] = useState<boolean>(task.completed);
+
+  const dispatch = useDispatch();
 
   const hasDateTime = task.due?.datetime !== undefined && task.due?.datetime !== '';
 
@@ -19,7 +23,10 @@ const TodoListItem: FC<TodoListItemProps> = ({ task }): JSX.Element => {
     }
   };
 
-  const handleCheckboxChange = () => setIsChecked(!isChecked);
+  const handleCheckboxChange = (taskId: number) => {
+    setIsChecked(!isChecked);
+    dispatch(markAsComplete(taskId));
+  };
 
   return (
     <div className="todoListItem">
@@ -29,7 +36,7 @@ const TodoListItem: FC<TodoListItemProps> = ({ task }): JSX.Element => {
             id="checkbox"
             type="checkbox"
             defaultChecked={isChecked}
-            onChange={handleCheckboxChange}
+            onChange={() => handleCheckboxChange(task.id)}
             className="todoListItem__checkbox"
           />
           <label htmlFor="checkbox" className="todoListItem__description">
