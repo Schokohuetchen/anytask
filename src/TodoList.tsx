@@ -8,6 +8,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
 
+interface TodoListHeaderProps {
+  buttonText: string;
+  onToggleSelectMode: () => void;
+}
+
+const TodoListHeader: FC<TodoListHeaderProps> = ({
+  buttonText,
+  onToggleSelectMode,
+}): JSX.Element => {
+  return (
+    <div className="todoList__header">
+      <div className="todoList__header-content">
+        <div className="todoList__back-action">
+          <div className="todoList__back-btn">
+            <FontAwesomeIcon icon={faLongArrowAltLeft} />
+            <span>Zurück</span>
+          </div>
+        </div>
+        <Button buttonText={buttonText} onClick={onToggleSelectMode} />
+      </div>
+    </div>
+  );
+};
+
 const TodoList: FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const selectedTasks = useSelector((state: RootState) => state.tasks.selectedTasks);
@@ -48,17 +72,7 @@ const TodoList: FC = (): JSX.Element => {
 
   return (
     <div className="todoList">
-      <div className="todoList__header">
-        <div className="todoList__header-content">
-          <div className="todoList__back-action">
-            <div className="todoList__back-btn">
-              <FontAwesomeIcon icon={faLongArrowAltLeft} />
-              <span>Zurück</span>
-            </div>
-          </div>
-          <Button buttonText={buttonText()} onClick={toggleSelectMode} />
-        </div>
-      </div>
+      <TodoListHeader buttonText={buttonText()} onToggleSelectMode={toggleSelectMode} />
       <div className="todoList__content">
         <div className="todoList__headline">Ihre heutigen Tasks:</div>
         {tasks &&
