@@ -81,9 +81,7 @@ const TodoListItem: FC<TodoListItemProps> = ({ task, selectMode = false }): JSX.
               isSelected ? 'todoListItem__checkbox--selected' : ''
             }`}
           />
-          <label htmlFor="checkbox" className="todoListItem__description">
-            {task.content}
-          </label>
+          <span className="todoListItem__description">{task.content}</span>
           {hasDateTime && <span className="todoListItem__time">{getTime()}</span>}
         </div>
       )}
