@@ -34,7 +34,7 @@ const TodoListHeader: FC<TodoListHeaderProps> = ({
             </div>
           )}
         </div>
-        <Button buttonText={buttonText} onClick={onToggleSelectMode} />
+        {!addMode && <Button buttonText={buttonText} onClick={onToggleSelectMode} />}
       </div>
     </div>
   );
@@ -64,11 +64,7 @@ const AddTodo: FC<AddTodoProps> = ({ onAddTodo }): JSX.Element => {
 
   return (
     <div className="todoList__add">
-      <TextField
-        value={textInput}
-        onChange={handleInputChange}
-        placeholder="z.B. Brunch mit Ute um 9 Uhr"
-      />
+      <TextField value={textInput} onChange={handleInputChange} placeholder="z.B. Brunch mit Ute" />
       <Button
         disabled={!textInput}
         isUppercase
