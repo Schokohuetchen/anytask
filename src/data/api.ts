@@ -19,42 +19,42 @@ export const handleSuccess = (authToken: string) => {
   setToken(authToken);
 };
 
-export const login = async (authToken: string) => {
-  await api(authToken).getProjects();
+export const login = (authToken: string) => {
+  return api(authToken).getProjects();
 };
 
 export const removeAuthToken = () => {
   removeToken();
 };
 
-export const fetchTasks = async () => {
+export const fetchAllTasks = () => {
   const authToken = getAccessToken();
 
   if (!authToken) {
-    return;
+    throw new Error('No authToken, data could not be fetched.');
+  } else {
+    return api(authToken).getTasks({ filter: 'today | overdue' });
   }
-
-  await api(authToken).getTasks();
 };
 
-export const addTask = async (data: AddTaskPayload) => {
+export const addTask = (data: AddTaskPayload) => {
   const authToken = getAccessToken();
 
   if (!authToken) {
-    return;
+    throw new Error('No authToken, request could not be processed.');
+  } else {
+    return api(authToken).addTask(data);
   }
-
-  await api(authToken).addTask(data);
 };
 
-export const removeTask = async (taskId: number) => {
+export const removeTask = (taskId: number) => {
   const authToken = getAccessToken();
 
   if (!authToken) {
-    return;
+    throw new Error('No authToken, request could not be processed.');
+  } else {
+    return api(authToken).deleteTask(taskId);
   }
-
-  await api(authToken).deleteTask(taskId);
 };
 
 export const isAuthenticated = (): boolean => {

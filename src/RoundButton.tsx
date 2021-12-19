@@ -11,8 +11,6 @@ interface RoundButtonProps extends Partial<ButtonProps> {
 
 const RoundButton: FC<RoundButtonProps> = ({ isLarge, onClick, icon = 'add' }): JSX.Element => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log('click');
-
     if (onClick) {
       onClick(e);
     }

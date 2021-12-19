@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
-import { TodoItem } from './models/TodoItem';
+import { Task } from '@doist/todoist-api-typescript';
 
 interface TodoListItemProps {
-  task: TodoItem;
+  task: Task;
 }
 
 const TodoListItem: FC<TodoListItemProps> = ({ task }): JSX.Element => {
