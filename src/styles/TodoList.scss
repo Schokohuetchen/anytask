@@ -1,7 +1,8 @@
 .todoList {
+  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 
   &__headline {
     font-size: 20px;
@@ -9,15 +10,57 @@
     margin-bottom: 1.5rem;
   }
 
+  &__header {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    padding: 1rem 2rem;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
+    background-color: #FFFFFF;
+  }
+
+  &__header-content {
+    width: 100%;
+    display: flex;
+    max-width: 900px;
+    justify-content: space-between;
+  }
+
+  &__back-btn {
+    display: flex;
+    align-items: center;
+  }
+
+  &__back-action {
+    display: flex;
+    color: #2980B9;
+    cursor: pointer;
+    align-items: center;
+
+    span {
+      font-size: 14px;
+      padding-left: 0.5rem;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  }
+
   &__content {
     width: 100%;
+    padding: 2rem;
     max-width: 275px;
+    min-height: calc(100vh - 335px);
   }
 
   &__actions {
     display: flex;
     margin-top: 1.5rem;
     align-items: center;
+    padding-bottom: 2rem;
 
     .roundButton--is-large {
       margin: 0 2rem;
