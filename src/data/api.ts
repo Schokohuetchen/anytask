@@ -1,10 +1,6 @@
 import { TodoistApi } from '@doist/todoist-api-typescript';
 import { getAccessToken, removeToken, setToken } from './localeStorage';
-
-interface AddTaskPayload {
-  content: string;
-  due_date: string;
-}
+import { AddTaskPayload } from '../models/AddTaskPayload';
 
 const api = (authToken: string) => {
   return new TodoistApi(authToken);

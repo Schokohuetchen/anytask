@@ -2,12 +2,13 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import TodoListItem from './TodoListItem';
 import RoundButton from './RoundButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteTask, deselectAll, fetchTasks } from './redux/taskSlice';
+import { addNewTask, deleteTask, deselectAll, fetchTasks } from './redux/taskSlice';
 import { RootState } from './redux/store';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
 import TextField from './TextField';
+import { AddTaskPayload } from './models/AddTaskPayload';
 
 interface TodoListHeaderProps {
   addMode?: boolean;
@@ -39,14 +40,27 @@ const TodoListHeader: FC<TodoListHeaderProps> = ({
   );
 };
 
-const AddTodo: FC = (): JSX.Element => {
+interface AddTodoProps {
+  onAddTodo: () => void;
+}
+
+const AddTodo: FC<AddTodoProps> = ({ onAddTodo }): JSX.Element => {
+  const dispatch = useDispatch();
   const [textInput, setTextInput] = useState<string>('');
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTextInput(e.target.value);
   };
 
-  const handleAddTodo = () => {};
+  const handleAddTodo = async () => {
+    const data: AddTaskPayload = {
+      content: textInput,
+      due_string: 'today',
+    };
+
+    await dispatch(addNewTask(data));
+    onAddTodo();
+  };
 
   return (
     <div className="todoList__add">
@@ -93,7 +107,7 @@ const TodoList: FC = (): JSX.Element => {
     setAddMode(true);
   };
 
-  const handleBackClick = () => {
+  const closeAddMode = () => {
     setAddMode(false);
   };
 
@@ -120,10 +134,10 @@ const TodoList: FC = (): JSX.Element => {
       <TodoListHeader
         addMode={addMode}
         buttonText={buttonText()}
-        onBackClick={handleBackClick}
+        onBackClick={closeAddMode}
         onToggleSelectMode={toggleSelectMode}
       />
-      {addMode && <AddTodo />}
+      {addMode && <AddTodo onAddTodo={closeAddMode} />}
       {!addMode && (
         <>
           <div className="todoList__content">

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { completeTask, fetchAllTasks, handleError, removeTask } from '../data/api';
+import { addTask, completeTask, fetchAllTasks, handleError, removeTask } from '../data/api';
 import { Task } from '@doist/todoist-api-typescript';
+import { AddTaskPayload } from '../models/AddTaskPayload';
 
 interface TaskList {
   tasks?: Task[];
@@ -77,6 +78,22 @@ export const markAsComplete = (taskId: number) => async (dispatch: any) => {
   } catch (e) {
     dispatch(error());
     handleError(e);
+  }
+};
+
+export const addNewTask = (data: AddTaskPayload) => async (dispatch: any) => {
+  try {
+    await addTask(data)
+      .then(() => {
+        dispatch(fetchTasks());
+      })
+      .catch((e) => {
+        dispatch(error());
+        console.log(e);
+      });
+  } catch (e) {
+    dispatch(error());
+    console.log(e);
   }
 };
 
