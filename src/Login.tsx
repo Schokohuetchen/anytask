@@ -20,8 +20,16 @@ const Login: FC = (): JSX.Element => {
 
   return (
     <form className="login">
-      <TextField value={textInput} onChange={handleInputChange} />
-      <Button disabled={!textInput} isUppercase isLarge buttonText="Login" onClick={handleLogin} />
+      <div className="login__content">
+        <TextField value={textInput} onChange={handleInputChange} placeholder="API TOKEN" />
+        <Button
+          disabled={!textInput}
+          isUppercase
+          isLarge
+          buttonText="Login"
+          onClick={handleLogin}
+        />
+      </div>
     </form>
   );
 };
