@@ -17,7 +17,7 @@ const taskSlice = createSlice({
     allTasks: (state, action: PayloadAction<any>) => {
       return {
         ...state,
-        ...action.payload,
+        tasks: [...action.payload.tasks],
       };
     },
     selectTask: (state, action: PayloadAction<number>) => {
