@@ -81,9 +81,9 @@ export const markAsComplete = (taskId: number) => async (dispatch: any) => {
   }
 };
 
-export const addNewTask = (data: AddTaskPayload) => async (dispatch: any) => {
+export const addNewTask = (data: AddTaskPayload) => (dispatch: any) => {
   try {
-    await addTask(data)
+    addTask(data)
       .then(() => {
         dispatch(fetchTasks());
       })
@@ -97,9 +97,9 @@ export const addNewTask = (data: AddTaskPayload) => async (dispatch: any) => {
   }
 };
 
-export const deleteTask = (taskId: number) => async (dispatch: any) => {
+export const deleteTask = (taskId: number) => (dispatch: any) => {
   try {
-    await removeTask(taskId)
+    removeTask(taskId)
       .then(() => {
         dispatch(deselectTask(taskId));
         dispatch(fetchTasks());
