@@ -52,13 +52,13 @@ const AddTodo: FC<AddTodoProps> = ({ onAddTodo }): JSX.Element => {
     setTextInput(e.target.value);
   };
 
-  const handleAddTodo = async () => {
+  const handleAddTodo = () => {
     const data: AddTaskPayload = {
       content: textInput,
       due_string: 'today',
     };
 
-    await dispatch(addNewTask(data));
+    dispatch(addNewTask(data));
     onAddTodo();
   };
 

@@ -49,9 +49,9 @@ const taskSlice = createSlice({
 export const { allTasks, selectTask, deselectTask, deselectAll, error } = taskSlice.actions;
 export default taskSlice.reducer;
 
-export const fetchTasks = () => async (dispatch: any) => {
+export const fetchTasks = () => (dispatch: any) => {
   try {
-    await fetchAllTasks()
+    fetchAllTasks()
       .then((tasks: Task[]) => {
         dispatch(allTasks({ tasks }));
       })
@@ -65,9 +65,9 @@ export const fetchTasks = () => async (dispatch: any) => {
   }
 };
 
-export const markAsComplete = (taskId: number) => async (dispatch: any) => {
+export const markAsComplete = (taskId: number) => (dispatch: any) => {
   try {
-    await completeTask(taskId)
+    completeTask(taskId)
       .then(() => {
         dispatch(fetchTasks());
       })
